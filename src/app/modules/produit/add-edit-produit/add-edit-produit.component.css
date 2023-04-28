@@ -1,0 +1,105 @@
+.container{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 8px;
+}
+img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+input[type="file"] {
+    display: none;
+    size: 60;
+}
+
+.upload{
+    width: 35px;
+    height: 35px;
+    margin-top:-39px;
+    margin-right: -25%;
+    border-radius: 50%;
+}
+.icon{
+ font-size:25px;
+}
+mat-form-field{
+    width: 100%;
+}
+form{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
+.card-prix{
+    margin-top:5%;
+    margin-bottom:5%;
+}
+.add-categorie {
+    margin-top: -85px;
+    text-align: center;
+    margin-left: 94%;
+}
+.btnAdd {
+    width: 25px;
+    height: 25px;   
+}
+.mat-icon{
+    margin-top: -30px;
+}
+
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+.card-header{
+    height: 40px;
+    background-color: 	#6C7B95;
+    color: white;
+}
+
+.mat-dialog-content {
+    max-height: initial;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.card-prix{
+    margin-top:2%;
+   
+}
+
+::ng-deep .mat-form-field-outline{
+    background-color: rgb(249, 249, 249);
+    border-radius: 5px;
+
+    
+}
+
+::ng-deep[readonly]  .mat-form-field-outline{
+    background-color: #D8E9F0;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+input[readonly]{
+    pointer-events: none;
+}
+
+
+
+    
+
+
+

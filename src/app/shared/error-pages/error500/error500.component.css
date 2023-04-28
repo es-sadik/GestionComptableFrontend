@@ -1,0 +1,24 @@
+h1 {
+    font-size: 15vmin;
+    margin-bottom: 0;
+  }
+  .error {
+    font-size: 5vmin;
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+  .text-secondary{
+    font-size: 4vmin;
+      margin-bottom: 50px;
+  }
+  div {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f4f8;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  

@@ -1,0 +1,69 @@
+
+
+
+<div class="wrapper">
+	
+	<div class="container mx-auto">
+		
+
+		<div id="card">
+			<div id="card-content">
+			  <div id="card-title">
+				<h1>L'authentification</h1>
+
+				
+				
+			  </div>
+			  	
+					<form class="form" (ngSubmit)="onSubmit()">
+						<h3 *ngIf="!isEmpty" class="text-danger">Remplir tous les champs</h3>
+						<h3 *ngIf="!isCorrect" class="text-danger">E-mail ou mot de passe incorrecte</h3>
+						
+						<div *ngIf="!etat"> 
+							<h3  class="text-danger">Vous n'êtes pas autorisé à accéder à cette application </h3>
+							<h3  class="text-danger">Contacter votre administrateur</h3>
+						</div>
+						
+						<input type="text" placeholder="Nom d'utilisateur" id="username" name="username" [(ngModel)]="user.userName">
+						<input  type="password" placeholder="Mot de passe" id="password" name="password" [(ngModel)]="user.userPassword" >
+						<div class="test mt-3">
+							<label class="toggle-control">
+								<input type="checkbox" name="checkbox"  [(ngModel)]="stayLogged" >
+								<span class="control"></span>
+								
+							</label>
+							<p style="font-size: 17px; margin-left: 55px;"> Rester connecté</p>
+
+						
+						</div>
+						<button class ="mt-4" type="submit" id="login-button">S'identifier</button>
+								
+				</form>
+			</div>
+		</div>
+		
+		
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<script > $("#login-button").click(function(event){
+		 event.preventDefault();
+	 
+	 $('form').fadeOut(500);
+	 $('.wrapper').addClass('form-success');
+});
+//# sourceURL=pen.js
+</script>
+

@@ -1,0 +1,84 @@
+mat-form-field{
+    width: 100%;
+}
+
+button.example-custom-date-class {
+    background: orange;
+    border-radius: 100%;
+}
+
+.example-container {
+    max-height: 400px;
+    overflow: auto;
+}
+  
+table {
+  width: 100%;
+}
+
+td, th {
+  width: 14.28%;
+  
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+  
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
+}
+
+  mat-expansion-panel-header{
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 1px 1px solid rgba(0, 0, 0, 0.125);
+  }
+  
+  
+
+  .mat-expansion-panel-header.mat-expanded,
+  .mat-expansion-panel-header.mat-expanded:hover,
+  .mat-expansion-panel-header.mat-expanded:focus {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 1px 1px solid rgba(0, 0, 0, 0.125);
+  }
+  
+  .card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+  }
+  .card-header{
+    height: 40px;
+    background-color: 	#6C7B95;
+    color: white;
+  }
+  
+  ::ng-deep  .mat-form-field-outline{
+    background-color: rgb(249, 249, 249);
+    border-radius: 5px;
+  }
+  ::ng-deep[readonly]  .mat-form-field-outline{
+    background-color: #D8E9F0;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  input[readonly]{
+    pointer-events: none;
+  }
+
+  .mat-header-cell {
+    background-color: #eceaea;
+    color: black;
+  }
+
+  table{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+
+  mat-paginator{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }

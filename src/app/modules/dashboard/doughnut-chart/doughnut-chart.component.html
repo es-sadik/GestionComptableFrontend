@@ -1,0 +1,17 @@
+<div #ContainerRef class="card-body">
+
+    <div class="d-flex justify-content-center" >
+        <h2 class="title" >Les top produits le plusieurs vendre</h2>
+    </div>
+
+    <ngx-charts-pie-chart 
+        [view]="[ContainerRef.offsetWidth, 280]"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+    >
+    </ngx-charts-pie-chart>
+</div>

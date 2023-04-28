@@ -1,0 +1,120 @@
+ 
+<div class="card  my-2 ">
+    <div class="card-header  text-center" >
+        Formulaire d'utilisateur
+    </div>
+    <div class="card-body  mx-5 py-5">
+        <form  [formGroup] ="formUser" >
+            <div class="row">
+                <div class="col me-3">
+                    <mat-form-field hintLabel="Min 4 characters" appearance="outline">
+                        <mat-label>Nom d'utilisateur</mat-label>
+                        <input matInput #input1  minlength="4" formControlName ="userName" placeholder="nom d'utilisateur" required>
+                        <mat-hint  align="end">4/{{input1.value?.length || 0}}</mat-hint>
+                        <mat-icon matSuffix >person</mat-icon>
+                        
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Etat de l'utilisateur </mat-label>
+                        <mat-select formControlName="etat" required >
+                            <mat-option [value]="true" >Active</mat-option>
+                            <mat-option [value]="false" >InActive</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="!isAddMode"  class="row mt-3">
+                <div class="col">
+                    <button class="btn btn-danger" (click)="changePasswordMode()" ><i class="fa fa-lock me-2 " aria-hidden="true"></i>changer le mot de passe</button>
+                </div>
+            </div>
+            <div *ngIf="isChangePasswordMode" class="row mt-3">
+                
+                <div class="col  me-3">
+                    <mat-form-field hintLabel="Min 6 characters" appearance="outline">
+                        <mat-label *ngIf="isAddMode">Mot de passe</mat-label>
+                        <mat-label *ngIf="!isAddMode">Nouveau mot de passe</mat-label>
+                        <input matInput #input2  minlength="6" [type]="hide1 ? 'password' : 'text'"  formControlName="userPassword" placeholder="mot de passe">
+                        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                            <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-hint  align="end">6/{{input2.value?.length || 0}}</mat-hint>
+                    </mat-form-field>
+                    
+                </div>
+                <div class="col ">
+                    <mat-form-field hintLabel="Min 6 characters" appearance="outline">
+                        <mat-label>Confirmer le mot de passe</mat-label>
+                        <input matInput  #input3  minlength="6" [type]="hide2 ? 'password' : 'text'"  formControlName="confirmPassword" placeholder="confirmer mot de passe" required>
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                            <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-hint  align="end">6/{{input3.value?.length || 0}}</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col"></div>
+                <div class="col"><div  *ngIf="!passwordIsMatched" class="text-danger text-center">le mot de passe ne correspond pas</div></div>
+                <div class="col"></div>
+            </div>
+        </form>
+        <div class="row mt-5">
+            <div class="col" >
+                <span id="permissonText">Permissions</span>
+            </div>
+            <div class="col" >
+                <mat-list-item fxLayoutAlign="flex-end" >
+
+                      <mat-checkbox
+                      [(ngModel)]="master_checked"
+                      color="accent"
+                      [(indeterminate)]="master_indeterminate"
+                      (change)="master_change()"
+                      ><span id="selectAllText" >Sélectionner tous </span></mat-checkbox>
+
+                </mat-list-item>
+            </div>
+
+        </div>
+
+        
+        <div class="row mt-3">
+            <div class="col p-3">
+
+                <mat-list-item *ngFor="let p of checkPermissions | slice: 0 : (numberOfPermission/2)+1">
+                    <mat-checkbox
+                    color="primary"
+                    [(ngModel)]="p.checked"
+                    (change)="list_change()"
+                    >   <div class="items">{{ p.namePermission }}</div>
+                    </mat-checkbox>
+                </mat-list-item>
+
+            </div>
+            <div class="col p-3">
+
+                <mat-list-item *ngFor="let p of checkPermissions | slice:(numberOfPermission/2)+1 : numberOfPermission" >
+                    <mat-checkbox
+                    color="primary"
+                    [(ngModel)]="p.checked"
+                    (change)="list_change()"
+                    > <div class="items">{{ p.namePermission }}</div>
+                </mat-checkbox>
+                </mat-list-item>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-secondary" routerLink="/admin/gestionComptes"   ><i class="fa fa-arrow-left me-1" aria-hidden="true"></i> Retour</button>
+            <button class="btn btn-success ms-3" *ngIf="isAddMode"  (click)="onValide()" [disabled]=" formUser.invalid " ><i class="fa fa-check me-1" aria-hidden="true" ></i> Valider</button>
+            <button class="btn btn-warning ms-3" *ngIf="!isAddMode" (click)="onValide()" [disabled]=" this.formUser.controls['userName'].invalid && this.formUser.controls['etat'].invalid" ><i class="fa fa-pencil me-1" aria-hidden="true" ></i> Modifier</button>
+        </div>
+        
+    </div>
+    
+</div>
+

@@ -1,0 +1,84 @@
+<div class="card mt-3 p-3">
+
+  <div class="card-body card-prix">
+
+    <div class="demo-button-container" fxLayoutAlign="flex-end">
+      <button mat-raised-button type="button" class="btn btn-success" routerLink="addFournisseur">
+        <i class="fa fa-plus-circle fa-lg me-1" aria-hidden="true"></i>
+        Ajoute Fournisseur</button>
+    </div>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filtrer Fournisseur</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechereche" #input>
+    </mat-form-field>
+    <div class="demo-button-container mt-2" fxLayoutAlign="flex-end">
+      <button (click)="openPDF()" type="button" class="btn btn-primary">
+        <i class="fa fa-print mx-1" aria-hidden="true"></i>
+        Imprimer</button>
+    </div>
+    <div>
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Code fornisseur</th>
+          <td mat-cell *matCellDef="let row"> {{ row.codeF }} </td>
+        </ng-container>
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+          <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row">
+            <span *ngIf="row.email == null"></span>
+            <span *ngIf="row.email != null">{{row.email}} </span>
+          </td>
+        </ng-container>
+
+        <!-- Tele Column -->
+        <ng-container matColumnDef="telePortable">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Numéro De Téléphone </th>
+          <td mat-cell *matCellDef="let row">
+            <span *ngIf="row.telePortable == null"></span>
+            <span *ngIf="row.telePortable != null">{{row.telePortable}}</span>
+          </td>
+        </ng-container>
+
+        <!-- Action column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="actions">
+              <button (click)="openDialogShow(row.id)" aria-label="b1" class="btn btn-outline-primary"><i
+                  class="fa fa-eye" aria-hidden="true"></i></button>
+              <button aria-label="Name" type="button" class="btn btn-outline-success mx-1"
+                routerLink="editFournisseur/{{row.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button aria-label="b1" (click)="openDialogDelete(row)" class="btn btn-outline-danger"><i
+                  class="fa fa-trash" aria-hidden="true"></i></button>
+
+            </div>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+  </div>
+</div>

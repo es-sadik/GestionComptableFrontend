@@ -1,0 +1,69 @@
+<div class="card text-center my-4">
+  <div class="card-body text-center">
+    <form [formGroup]="categorieForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom Categorie</mat-label>
+        <input formControlName="nomCat" matInput placeholder="Nom" type="text" required />
+      </mat-form-field>
+
+
+    </form>
+
+    <button (click)="onSubmit()" type="button" class="btn btn-success " [disabled]="categorieForm.invalid">
+      <i class="fa fa-plus-circle fa-lg me-1" aria-hidden="true"></i>
+      Ajoute Categorie
+    </button>
+
+  </div>
+</div>
+
+
+
+<div class="card my-4 p-4">
+  <div class="card-body ">
+
+    <mat-form-field class="filterField" appearance="outline">
+      <mat-label>Filtrer Categorie</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechereche" #input>
+    </mat-form-field>
+
+    <div>
+      <table mat-table [dataSource]="dataSource" matSort>
+
+
+        <!-- nom Column -->
+        <ng-container matColumnDef="nom">
+          <th class="test1" mat-header-cell *matHeaderCellDef mat-sort-header> Nom de Categorie</th>
+          <td class="test1" mat-cell *matCellDef="let row"> {{row.nomCat}} </td>
+        </ng-container>
+
+
+        <!-- Action column -->
+        <ng-container matColumnDef="actions">
+          <th class="test2" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+          <td class="test2" mat-cell *matCellDef="let row">
+
+            <div class="actions">
+              <button (click)="openDialogEdit(row)" class="btn btn-outline-success mx-1"><i class="fa fa-pencil"
+                  aria-hidden="true"></i></button>
+              <button (click)="openDialogDelete(row)" class="btn btn-outline-danger"><i class="fa fa-trash"
+                  aria-hidden="true"></i></button>
+            </div>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+  </div>
+</div>

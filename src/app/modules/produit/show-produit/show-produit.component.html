@@ -1,0 +1,169 @@
+
+<div class=" bg-white" >
+  <div  class="close">
+    <button  class="btn btn-outline-danger" mat-dialog-close><i class="fa fa-times" ></i></button>
+  </div>
+ <form [formGroup]="productForm" >
+  <div class="row">
+    <div class="col-4 " >
+      <div class="d-flex align-items-center flex-column ">
+        <img [src]="imageUrl" >   
+        <div class="mt-3">
+          <mat-form-field appearance="outline" ng-disabled>
+            <mat-label>Reference</mat-label>
+          <input formControlName="reference" matInput  type="text" readonly />
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" >
+            <mat-label>Désignation</mat-label>
+            <input formControlName="designation" matInput  type="text" readonly/>
+          </mat-form-field>
+        </div>
+      </div>
+
+    
+    </div>
+    <div class="col-8">
+      <div class="card text-center" style="height:93%;">
+        <div class="card-header">
+          Prix
+        </div>
+        <div class="card-body card-prix">
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Prix d'achat HT</mat-label>
+                <input formControlName="prixAchat" matInput  type="number"  readonly/>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Prix de vente HT</mat-label>
+                <input formControlName="prixVente" matInput type="number" readonly/>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Prix de revient HT</mat-label>
+                <input formControlName="prixRevient" matInput  type="number" readonly />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>TVA (%)</mat-label>
+              <input  formControlName="tva" matInput  type="text" readonly/>
+                
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+    <div class="card text-center ">
+      <div class="card-header" >
+        Les information :
+      </div>
+      <div class="card-body" >
+        <div class="row">
+          <div class="col-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Marque</mat-label>
+              <input  formControlName="marque" matInput  type="text" readonly/>
+            </mat-form-field>
+          </div>
+          <div class="col-4">
+         
+            <mat-form-field appearance="outline" >
+              <mat-label>Catégorier</mat-label>
+              <input  matInput formControlName="categorier"  type="text" readonly/>
+            </mat-form-field>
+        
+          </div>
+          <div class="col-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Type de produit</mat-label>
+              <input matInput  formControlName="type" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput  formControlName="description" readonly></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-2"></div> 
+        </div>
+      </div>
+      
+    </div>
+    <div class="row mt-5">
+      <div class="col-6">
+        <div class="card text-center">
+          <div class="card-header">
+            Caractéristiques quantitatives
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Poids</mat-label>
+                  <input formControlName="poids" matInput  type="number" readonly/>
+                </mat-form-field>
+              </div>
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Volume</mat-label>
+                  <input formControlName="volume" matInput  type="number" readonly/>
+                </mat-form-field>
+              </div>
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Surface (en Métre carré)</mat-label>
+                  <input formControlName="surface" matInput  type="number" readonly/>
+                </mat-form-field>
+              </div>
+            </div>
+          
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card text-center">
+          <div class="card-header">
+            Les dimensions
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Longueur (en Métre)</mat-label>
+                  <input formControlName="longueur" matInput  type="number" readonly/>
+                </mat-form-field>
+              </div>
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Largeur (en Métre)</mat-label>
+                  <input formControlName="largeur" matInput  type="text" readonly/>
+                </mat-form-field>
+              </div>
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Hauteur (en Métre)</mat-label>
+                  <input formControlName="hauteur" matInput  type="text" readonly/>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>  
+  
+  <!--                 -->
+
+ </form>
+</div>

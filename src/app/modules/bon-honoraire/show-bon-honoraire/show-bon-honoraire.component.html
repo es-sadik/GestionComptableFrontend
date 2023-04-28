@@ -1,0 +1,84 @@
+
+<div class="demo-button-container mt-2"  fxLayoutAlign="flex-end">
+    <button (click)="openPDF()" type="button" class="btn btn-primary"  >
+      <i class="fa fa-print mx-1" aria-hidden="true"></i>
+      Imprimer</button>
+  </div>
+
+<div >
+    <div  style="margin-top:20px; ">
+        <div class="p-1 test" >
+            <div id="contenu" class="text-black" >
+                
+                <!--
+                        <div class="text-center">
+                            <div id="divLogo2" style="display: contents;">
+                                <img id="imgLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAACURJREFUeF7tnbuu3FQUhv+E0NGgcIl4E1oaSkCEW0IbGp4HIehyASRACoKWB+BNUAg0VEhAQBuOYY7PzGzv3/acmf1/6WC8PF7fWp+Xb+NzRfyDAAR2ErgCGwhAYDcBBKE7ILCHAILQHhBAEHoAAh4BJojHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42oEAIIElJo0vQIIIjHjagQAggSUmjS9AggiMeNqBACCBJSaNL0CCCIx42o8wSGPvqrNzAI0ltFD5/Pe5I+kvRE0h1JDw+/Cet9I4KsxzZhze9Luivp6lmyjyTd6ClxBOmpmofNZSxH+fYfJb102M1Y99sQZF2+va79tqR7G5Oj5PmnpLc4xOqv5G9K+kTS9f5Sa8roZ0kfTGjwXXKUc5Gvmr7xBBZmgkilMdLlGFr1saQX9vRtlByFA4JI3V2anLlj3tUTtyTd33JY1eXkGBgiCIKMfdrWE5FyMEH+bY3xBEnbadTyj5UDQRCktoOIlgNBEGSfIPFyIAiC7BKknHg/SDsh33ZxI+14exuD2jF4L/dJyuXs8qzUNyMI4/zL5ECOM0gIUj9J7+k+ybb7HGNBykOHw7NVwx3yri/l7rssjiB1QXq7TzKu+b78yuMjsXJwDjLtHCRVkHg5EARBtp2kxx9WbR5ycYiVfYj1rqQvRsfgTI4NIAiSK0iR4zNOyPc/uYYgmYIgx8QnOhEkT5ByVYrJgSATCeQJwn2Oya3B70FqD+vtusrTgPioF+WEvFIeDrHyJsjQEsgxYd+FIJmC7JLjmqQ/JvRNzCIIkifIPjnKPZHyZhL+8bDifz1Qe5q3p0dNanLc5D0F5/cNTJCcCTJFDh4/Gs1OBMkQZN8JeXmXVZkcwz96AhjndhO9H2LVrlbV8o8+H2Fv0fcEqckx5T4QgkQT6FeQKXIgCDcKq/rXDjFO8SrWLjmelvT7iEgt/yrAnhfgEOu0Jsj3Z4+nv7KnKffJUe5zbJ6QM0GYINX9W20PegwTpDR9edvIl2fZbHstT/moJkd5Q0vtN+nsNLmKdVJXsbY1fcvvOcphVZkcRY5t9zlqO4jqHqbnBdhbHPch1tJyIEijzQhyvIKsIQeCIEgjgeMUZC05EKSxPZggxyfImnIgCII0EjguQebKUZIvJ+TlJH7XP65iNbQIE2Q5QX6T9LWkZyS9Zjw2voQcpfTl9xxFkqd29AGCIEgDgWUE+VXSq5J+qNyn2LVhS8kxrH+fJAjS0B5MkPmCjOUY8G+7V7GtNEvLUZMEQRCkgcA8QXbJMWzAO5I+H729cHPj1pJjU5Lh7vvw/xCkoT2YIL4gNTk2JSkvahufE6wtx/D9tTvltc8b2qm/RRHEE2SqHLskOZQc5ftrAtQ+76/rGzJCkPYGapVjKMfbZ4db5b/Hf5Sm5dmqhvL+s2hNgNrnrd/X1fII0t5AL29crWpthuGVOuV34PtO5qf+2GnK99cEqH0+5Tu6XQZB2gVZktmak4NzkAW0XbLYC2zOpayitgetfe5u9CHk4BDLrc5ZHIJczgQ5lBwIgiAzCRxekEPKgSAz24MJclhBDi0HgiDITAKHE+Qy5ECQme3BBDmMIJclB4IgyEwC6wtymXIgyMz2YIKsK8hly4EgCDKTwHqCHIMcCDKzPZgg6whyLHIgCILMJNAuiPOFU9546KzXieH3IA3UmCDrC3JMcpTWQBAEaSBQF+SxpOea1vj/wscmx0+SXhzlstazZiay4wpjgtQFeV3Sp5KebyzdMcpxR9K3CDK9kghSF6RG85hOyGvbuu1zJsgeaggyT5BTl2PKVS5Hum5iEMQXpAc5EKSiMoJ4gvQiB4IgSHXatx6D9yQHgiDIooL0JgeCIMhigvQoB4IgyCKC9CoHgiDIbEF6lgNBEGSWIL3LgSAIYguSIAeCIIglSIocCIIgzYKUF0uXP1dwdSNyyXflVjfowAu03gc68OZd7tdxJ/3infQnQXIwQZgg1T3QeA+6GdDz5BjyZILsaREmyMUJMuBKkIMJwgSxJsguOa6d/Ynlm9W1nu4C7DQ3apcOo5yQlz+yOeWwKkGOwiG9J841QzKMIseDiSfkKXI8knTjdIff8lueKghyXOylIkf5zfp3y7fZ6a4xUZBbku5PnBynW1m2fBECaYIgxyJtk7OSJEFuS7rH5Mhp7iUyTREEOZbolsB1JAiCHIGNvVTKvQvyvqS7HFYt1S556+lZEOTI6+fFM+5VEORYvFUyV9ijIC03ATOrTtaTCfQmSMnnF0nPbhBIeSp3ctFZcDqBHgUpf8/j+hkC5JjeCyy5hUBvgpQU35D0saTyy8APJT2k8hBwCfQoiMuCOAhcIIAgNAUE9hBAENoDAghCD0DAI8AE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHgEE8bgRFUIAQUIKTZoeAQTxuBEVQgBBQgpNmh4BBPG4ERVCAEFCCk2aHoG/AU1FLefyAlhBAAAAAElFTkSuQmCC" alt="logo" style="width:80px;height:80px" class="img-fluid">
+                            </div>
+                        </div>
+                -->   
+                    <div style="font-size:8px">
+                        Code client: {{bonHonoraire.client.codeC}} <br>  
+                        Nom client : {{bonHonoraire.client.nom}} <br>
+                        Télèphone : {{bonHonoraire.client.telePortable}} <br>  
+                        Adresse : {{bonHonoraire.client.adresse}}<br>  
+                        Date commande : {{bonHonoraire.dateBh}}<br> 
+                    </div>
+                    
+                    
+                
+                
+                
+                
+                    
+                    
+                        <table cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr style="height:10px"></tr>
+                                <tr>
+                                    <th colspan="5" style="font-size:10px;text-align:center; background-color:rgb(235, 233, 233);">
+                                         BON  N° : {{bonHonoraire.bonHNum}}
+                                    </th>
+                                </tr>
+                                <tr style="height:10px"></tr>
+                                <tr></tr>
+                                <tr style="height:10px; font-size:8px">
+                                    <th colspan="5" class="text-right">
+                                        Montants exprimés en Dirham
+                                    </th>
+                                </tr>
+                                <tr class="headerFacture">
+                                    <th style="width:60%" class="text-center">Désignation</th>
+                                    <th style="width:10%" class="text-center">Qté</th>
+                                    <th style="width:15%" class="text-center">PU</th>
+                                    <th style="width:15%" class="text-center">TOTAL</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody style="font-size:8px">
+                                    <tr class="bodyFacture" *ngFor="let lign of bonHonoraire.listLignBH">
+                                    <td style="width:60%" class="text-left">{{lign.produit.designation}}</td>
+                                    <td style="width:10%" class="text-center">{{lign.quantite}}</td>
+                                    <td style="width:15%" class="text-right">{{ lign.prixUnitaire + lign.produit.tva*lign.prixUnitaire }}</td>
+                                    <td style="width:15%" class="text-right">{{(lign.quantite)*(lign.prixUnitaire + lign.produit.tva*lign.prixUnitaire)}}</td>
+                                </tr>
+                                <tr class="tbody_ligne" style="height:2px">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="ttcFacture">
+                                 <td colspan="1" style="border-bottom: none !important; border-top: 1pt dashed black; "></td>
+                                    <th colspan="2" class="text-right">NET A PAYER</th>
+                                    <th colspan="1" class="text-right">{{netPayer}}</th>
+                                </tr>
+                                
+                            </tbody>
+                            
+                        </table>
+            </div>
+        </div>
+    </div>
+</div>

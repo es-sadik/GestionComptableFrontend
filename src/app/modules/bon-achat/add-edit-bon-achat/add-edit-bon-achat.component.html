@@ -1,0 +1,251 @@
+
+<div >
+    
+      <div class="card text-center my-4">
+          <div class="card-header" >
+              card de Fournisseur
+          </div>
+          <div class="card-body mx-5">
+            <form  [formGroup] ="formInfosBon" >
+              <div class="row">
+                  <div class="col me-3">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput
+                             [matAutocomplete]="autofournisseur"
+                             placeholder="Select Fournisseur"
+                             formControlName="fournisseur" (ngModelChange)="setFornisseur()">
+                      <mat-autocomplete #autofournisseur="matAutocomplete" [displayWith]="getOptionTextFournisseur">
+                        <mat-option *ngFor="let f of filteredFournisseurs  | async" [value]="f">
+                          {{f.nom}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    
+                  </div>
+                  <div class="col">
+                      <mat-form-field  appearance="outline" readonly>
+                        <mat-label>code Fournisseur</mat-label>
+                        <input matInput formControlName ="codeF"  readonly>
+                    </mat-form-field>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col me-3">
+                    <mat-form-field  appearance="outline" readonly>
+                      <mat-label>Bon Numero</mat-label>
+                      <input matInput formControlName="bonANum" readonly>
+                  </mat-form-field>
+                  </div>
+                  <div class="col ">
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Numero Facture</mat-label>
+                      <input matInput formControlName ="facBonNum" >
+                  </mat-form-field>
+                  </div>
+                  <div class="col">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Date de bon</mat-label>
+
+                          <input matInput [matDatepicker]="picker" formControlName ="dateBa" *ngIf="isAddMode" (ngModelChange)="setNextBonAchat()">
+                          <input matInput [matDatepicker]="picker" formControlName ="dateBa" *ngIf="!isAddMode" (dateChange)="setCurrentBonAchat()">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+                      </mat-form-field>
+
+                  </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    
+      <!-- expansion-panel -->
+    <mat-accordion  >
+      
+      <mat-expansion-panel style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"  [expanded]="isAddMode" [disabled]="isAddMode" class="text-center" hideToggle="true" #panel="matExpansionPanel">
+        <mat-expansion-panel-header style="background-color: 	#6C7B95; "  [collapsedHeight]="'40px'" [expandedHeight]="'40px'"  class="d-flex">
+          
+            <mat-panel-title class="d-flex w-100 justify-content-center" style="color: white;" >
+            Card Produit
+            </mat-panel-title>
+          
+          <div class="p-2 flex-shrink-1 ">
+            <mat-panel-description style="color: white;" >
+            <mat-icon *ngIf="!panelOpenState">add</mat-icon>
+            <mat-icon *ngIf="panelOpenState">remove</mat-icon>
+          </mat-panel-description></div>
+          
+          
+          
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="formLigneBon" class="mx-5 mt-3">
+          
+              <div class="row">
+                <div class="col ">
+                  
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput
+                           [matAutocomplete]="autoProduit"
+                           placeholder="Select produit"
+                           formControlName="produit" (ngModelChange)="setProduit()">
+                    <mat-autocomplete #autoProduit="matAutocomplete" [displayWith]="getOptionTextProduit">
+                      <mat-option *ngFor="let p of filteredProduits  | async" [value]="p">
+                        {{p.reference+" -- "+p.designation }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+    
+                <div class="col">
+                    <mat-form-field  appearance="outline">
+                        <mat-label>Quantite</mat-label>
+                        <input  type="number"  matInput formControlName ="quantite" (keyup)="calculateMontants()">
+                    </mat-form-field>
+    
+                </div>
+                
+                <div class="col">
+                  <mat-form-field  appearance="outline" readonly>
+                      <mat-label>Montant HT</mat-label>
+                      <!--[value]="formLigneBon.controls['montantHt'].value | number: '1.2-2' "   formLigneBon.get('montantHt')?.value -->
+                      <input type="text" matInput formControlName ="montantHt"  readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col ">
+                    <mat-form-field  appearance="outline" readonly>
+                        <mat-label> Taux TVA (%)</mat-label>
+                        <input type="number" matInput formControlName ="tva"  readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field  appearance="outline">
+                    <mat-label>Prix Unitaire Hors Taxe</mat-label>
+                    <input type="number" matInput formControlName ="prixUnitaire" (keyup)="calculateMontants()">
+                  </mat-form-field>
+                </div>
+    
+                <div class="col">
+                  <mat-form-field  appearance="outline" readonly>
+                      <mat-label>Montant TVA</mat-label>
+                      <input type="text" matInput formControlName ="montantTva"  readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col ">
+                  
+                    
+                </div>
+                <div class="col">
+                  
+                </div>
+    
+                <div class="col">
+                  <mat-form-field  appearance="outline" readonly>
+                      <mat-label>Montant TTC</mat-label>
+                      <input type="text" matInput formControlName ="montantTtc" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div>
+                <button class="btn btn-warning" (click)="resetFormLigneBA()" type="reset"><i class="fa fa-refresh" aria-hidden="true"></i> Réinitialiser</button>
+                <button class="btn btn-success ms-3" (click)="addEditLigne()" [disabled]="formLigneBon.invalid || formLigneBon.controls['quantite'].value == 0">
+                  <span *ngIf="isAddLigneMode; else editMode"> <i class="fa fa-plus me-1" aria-hidden="true"></i>Ajoute ligne</span> 
+                </button>
+              </div>
+              <ng-template #editMode><i class="fa fa-pencil me-1" aria-hidden="true"></i>Edite ligne</ng-template>
+    
+        </form>
+        
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    
+
+    <div class="card  mt-4">
+      <div class="card-body ">
+
+        <div class="example-container mat-elevation-z8 ">
+          <table mat-table [dataSource]="dataSource" > 
+            <!-- reference Column -->
+            <ng-container matColumnDef="reference" >
+              <th mat-header-cell *matHeaderCellDef class="ms-2"> Reference </th>
+              <td mat-cell *matCellDef="let row"> {{row.produit.reference}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+          
+            <!-- designation Column -->
+            <ng-container matColumnDef="designation" >
+              <th mat-header-cell *matHeaderCellDef> Designation</th>
+              <td mat-cell *matCellDef="let row"> {{row.produit.designation}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+          
+            <!-- prixUnitaire Column -->
+            <ng-container matColumnDef="prixUnitaire">
+              <th mat-header-cell *matHeaderCellDef> Prix_unitaire </th>
+              <td mat-cell *matCellDef="let row"> {{row.prixUnitaire | number :'1.2-2'}} </td>
+              <td mat-footer-cell *matFooterCellDef> Totale</td>
+            </ng-container>
+    
+            <!-- quantite Column -->
+            <ng-container matColumnDef="quantite">
+              <th mat-header-cell *matHeaderCellDef> Quantite </th>
+              <td mat-cell *matCellDef="let row"> {{row.quantite}}  </td>
+              <td mat-footer-cell *matFooterCellDef> {{totaleQuantite }} </td>
+            </ng-container>
+    
+            <!-- montant_HT Column -->
+            <ng-container matColumnDef="montantHt">
+              <th mat-header-cell *matHeaderCellDef> Montant HT </th>
+              <td mat-cell *matCellDef="let row"> {{row.montantHt | number :'1.2-2' }}   </td>
+              <td mat-footer-cell *matFooterCellDef> {{totaleMontantHt | number :'1.2-2' }} </td>
+            </ng-container>
+    
+            <!-- taux_TVA Column -->
+            <ng-container matColumnDef="montantTva">
+              <th mat-header-cell *matHeaderCellDef> Montant TVA </th>
+              <td mat-cell *matCellDef="let row"> {{row.montantTva | number :'1.2-2' }}  </td>
+              <td mat-footer-cell *matFooterCellDef> {{totaleTauxTva | number :'1.2-2' }} </td>
+            </ng-container>
+    
+            <!-- montantTtc Column -->
+            <ng-container matColumnDef="montantTtc">
+              <th mat-header-cell *matHeaderCellDef> Montant TTC </th>
+              <td mat-cell *matCellDef="let row"> {{row.montantTtc | number :'1.2-2'}}  </td>
+              <td mat-footer-cell *matFooterCellDef> {{totaleMontantTtc | number :'1.2-2' }} </td>
+            </ng-container>
+            <ng-container  matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let row; let i = index" >
+                  <button   type="button" (click)="editLigne(i)" class="btn btn-outline-success me-1"  [disabled]="!isAddLigneMode && currentIndex == i"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                  <button  class="btn btn-outline-danger" (click)="deleteLigne(i)"  [disabled]="!isAddLigneMode  && currentIndex == i " ><i class="fa fa-trash" ></i></button>
+              </td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+    
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    
+            
+          </table>
+        </div>
+    
+        <div class="text-center mt-3">
+          <button class="btn btn-primary" (click)="onEnregistre()" [disabled]="formInfosBon.invalid || dataList.length == 0  " ><i class="fa fa-floppy-o" aria-hidden="true"></i> En brouillon</button>
+          <button class="btn btn-success ms-3"  (click)="onValide()" [disabled]="formInfosBon.invalid || dataList.length == 0" ><i class="fa fa-check" aria-hidden="true" ></i> Valide</button>
+        </div>
+
+      </div>
+    </div>
+    
+</div>
+

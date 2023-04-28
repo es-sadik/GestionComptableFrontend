@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Supprime Catégorie</h1>
+<div mat-dialog-content>
+  Etes-vous sûr de vouloir supprimer cette catégorie : {{categorie.nomCat}} ?
+</div>
+<div mat-dialog-actions >
+    <div class="ms-auto">
+  <button class="btn btn-primary " mat-dialog-close>Fermer</button>
+  <button class="btn btn-danger  mx-2" (click)="deleteCategorieById()" >Supprimer</button>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<mat-toolbar >
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span> Gestion Cabinet Comptable </span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+           
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <i class="fa fa-user-circle me-2" aria-hidden="true"></i>
+                        {{userAuthService.getUserName() |titlecase }}
+                    </button>
+                    
+                    <mat-menu color="primary" class="custom-class" #menu="matMenu" xPosition="before">
+                            <div *ngIf="userService.roleMatch(['Admin'])">
+                                <li routerLink="/admin/profile" mat-menu-item >
+                                    <i class="fa fa-user me-2" aria-hidden="true"></i>
+                                profile
+                                </li>
+                                <li routerLink="/admin/gestionComptes"  mat-menu-item>
+                                    <i class="fa fa-users me-2" aria-hidden="true"></i>
+                                    Gestion des comptes
+                                </li>
+                            </div>
+                            <li (click)="logOut()" mat-menu-item>
+                                <i class="fa fa-sign-out me-2" aria-hidden="true"></i>
+                                Se déconnecter
+                            </li>
+                        
+                    </mat-menu>
+
+
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar> 

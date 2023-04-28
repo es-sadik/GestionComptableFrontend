@@ -1,0 +1,46 @@
+.headerFacture th {
+    border-top: 1pt dashed black;
+    border-bottom: 1pt dashed black;
+    border-left: 1pt dashed black;
+    border-right: 1pt dashed black;
+ }
+.bodyFacture td {
+    vertical-align: top;
+    padding-right: 2px;
+    padding-left: 2px;
+    border-left: 1pt dashed black;
+    border-right: 1pt dashed black;
+
+}
+
+.htFacture th, .tvaFacture th, .ttcFacture th {
+    padding: 3px;
+    border-bottom: 1pt dashed black;
+    border-left: 1pt dashed black;
+}
+.htFacture th:nth-last-child(1), .tvaFacture th:nth-last-child(1), .ttcFacture th:nth-last-child(1) {
+    border-right: 1pt dashed black;
+}
+.ttcFacture th {
+    border-top: 1pt dashed black;
+
+}
+
+.headerFacture{
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.demo-button-container {
+    padding-bottom: 16px;
+  }
+
+  #contenu{
+      margin-left: 10%;
+      width: 80%;
+      margin-right: 10%;
+
+  }
+  #contenu table{
+      width: 100%;
+  }

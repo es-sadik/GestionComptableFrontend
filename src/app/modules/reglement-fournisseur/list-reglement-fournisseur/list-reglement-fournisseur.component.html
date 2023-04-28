@@ -1,0 +1,90 @@
+<div class="card mt-3 p-3">
+  <div class="card-body card-prix">
+    <div class="demo-button-container" fxLayoutAlign="flex-end">
+      <button type="button" class="btn btn-success" routerLink="addReglementFournisseur">
+        <i class="fa fa-plus-circle fa-lg me-1" aria-hidden="true"></i>
+        Ajoute Reglement</button>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Filtrer Fournisseur</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechereche" #input>
+    </mat-form-field>
+
+
+    <div>
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="bonANum">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fournisseur </th>
+          <td mat-cell *matCellDef="let row">{{row.bonAchat.fournisseur.nom }}</td>
+        </ng-container>
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="nomF">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> N° Bon </th>
+          <td mat-cell *matCellDef="let row"> {{ row.bonAchat.bonANum}} </td>
+        </ng-container>
+
+
+
+        <!-- Tele Column -->
+        <ng-container matColumnDef="codeRF">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Code RF </th>
+          <td mat-cell *matCellDef="let row"> {{row.codeRF}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="datePayment">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Paiement </th>
+          <td mat-cell *matCellDef="let row"> {{row.datePayment}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modePayment">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Mode de Réglement </th>
+          <td mat-cell *matCellDef="let row"> {{row.modePaymant}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="avance">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Avance </th>
+          <td mat-cell *matCellDef="let row">{{row.avance}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="reste">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Reste </th>
+          <td mat-cell *matCellDef="let row">{{row.reste}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let row">
+            <span *ngIf="row.status" class="span-satus-true">R</span>
+            <span *ngIf="!row.status" class="span-satus-false">NR</span>
+          </td>
+        </ng-container>
+
+        <!-- Action column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="actions">
+              <button (click)="openDialog(row)" class="btn btn-outline-danger">
+                <i class="fa fa-trash"aria-hidden="true"></i>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      <notifier-container></notifier-container>
+    </div>
+  </div>
+</div>

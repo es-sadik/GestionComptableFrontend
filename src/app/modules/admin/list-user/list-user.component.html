@@ -1,0 +1,54 @@
+
+
+    <div class="demo-button-container" fxLayoutAlign="flex-end">
+      <button type="button" class="btn btn-success" routerLink="addUser">
+        <i class="fa fa-plus-circle fa-lg me-1" aria-hidden="true"></i>
+        Ajoute User
+      </button>
+    </div>
+
+    <div class="card  mt-4">
+      <div class="card-header text-center">
+        Panneau des utilisateurs
+      </div>
+
+      <div class="card-body  py-4 ">
+
+        <div class="example-container mat-elevation-z8  ">
+          <table mat-table [dataSource]="dataSource">
+            <!-- reference Column -->
+            <ng-container matColumnDef="userName">
+              <th class="userName" mat-header-cell *matHeaderCellDef class="ms-2"> Nom d'utilisateur </th>
+              <td class="userName" mat-cell *matCellDef="let row"> {{row.userName}}</td>
+            </ng-container>
+
+            <!-- designation Column -->
+            <ng-container matColumnDef="etat">
+              <th class="etat" mat-header-cell *matHeaderCellDef> Etat</th>
+              <td class="etat" mat-cell *matCellDef="let row">
+                <span *ngIf="row.etat" class="text-success">Active </span>
+                <span *ngIf="!row.etat" class="text-danger">InActive </span>
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="actions">
+              <th class="actions" mat-header-cell *matHeaderCellDef> Actions </th>
+              <td class="actions" mat-cell *matCellDef="let row; let i = index">
+                <button class="btn btn-outline-success me-1" routerLink="editUser/{{row.id}}"><i class="fa fa-pencil"
+                    aria-hidden="true"></i></button>
+                <button (click)="openDialogDelete(row)" class="btn btn-outline-danger"><i class="fa fa-trash"
+                    aria-hidden="true"></i></button>
+              </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+        </div>
+
+
+      </div>
+    </div>

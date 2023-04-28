@@ -1,0 +1,11 @@
+
+<h1 mat-dialog-title>Supprimer bon d'achat</h1>
+<div mat-dialog-content>
+    Êtes-vous sûr de vouloir supprimer ce bon d'achat : {{bonAchat.bonANum}} ?
+</div>
+<div mat-dialog-actions >
+    <div class="ms-auto">
+  <button class="btn btn-primary " mat-dialog-close>Fermer</button>
+  <button class="btn btn-danger  mx-2" (click)="deleteBonAchatById()" >Supprimer</button>
+    </div>
+</div>

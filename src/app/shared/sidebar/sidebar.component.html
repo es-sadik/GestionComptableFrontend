@@ -1,0 +1,28 @@
+
+<mat-nav-list>
+    <mat-list>
+
+        <!--<h2 matSubheader>Pages</h2>-->
+        <mat-divider></mat-divider>
+        <a  mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['Dashboard'])" routerLink="/dashboard"><i  class='bx bxs-dashboard bx-sm me-3  c-primary ' ></i> Tableau de bord</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" class="test" *ngIf="this.userService.permissionMatch(['Client'])" routerLink="/client"><mat-icon class="c-blue me-3">people_outline</mat-icon> Client</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['Fournisseur'])" routerLink="/fournisseur"><mat-icon  class="c-blue me-3" >people_outline</mat-icon> Fournisseur</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item  [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['Produit'])" routerLink="/produit"><i  class='fa fa-cubes me-3 fa-lg c-pink '></i>Produit</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item   [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['Produit'])" routerLink="/produit/categorie"><i class='bx bx-category bx-sm me-3 c-pink '></i> Categorie</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['BonAchat'])" routerLink="/bonAchat"><i class='bx bx-cart-download bx-sm me-3 c-green '></i> Bon Achat</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['ReglementFournisseur'])" routerLink="/reglementFournisseur"><i class='bx bx-money bx-sm me-3  c-yellow '></i> Reg Fournisseur</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['BonHonoraire'])" routerLink="/bonHonoraire"><i class='bx bx-cart bx-sm me-3 c-green '></i> Bon Honoraire</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['ReglementClient'])" routerLink="/reglementClient"><i class='bx bx-money bx-sm me-3 c-yellow '></i> Reg Client</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="['is-active']" *ngIf="this.userService.permissionMatch(['Facture'])" routerLink="/facture"><i class='fa fa-files-o me-3 fa-lg  c-green '></i> Factures</a>
+        <mat-divider></mat-divider>
+    </mat-list>
+</mat-nav-list>

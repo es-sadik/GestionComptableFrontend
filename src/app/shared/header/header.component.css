@@ -1,0 +1,21 @@
+button img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+mat-toolbar{
+  background-color: #272343;
+  color: #FFFFFF;
+}
+
+
+::ng-deep .custom-class {
+
+  background-color: #4a4667 !important;
+  
+}
+li{
+  color: #FFFFFF !important;
+}

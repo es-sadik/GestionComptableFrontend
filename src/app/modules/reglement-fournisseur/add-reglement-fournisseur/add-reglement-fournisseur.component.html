@@ -1,0 +1,168 @@
+<div >
+    <div class="card text-center my-4">
+        <div class="card-header" >
+            Card de Fournisseur
+        </div>
+        <div class="card-body mx-5">
+          <form  [formGroup] ="formInfosFournisseur" >
+            <div class="row">
+                <div class="col me-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput
+                           [matAutocomplete]="autofournisseur"
+                           placeholder="Select Fournisseur"
+                           formControlName="fournisseur" (ngModelChange)="setFornisseur()">
+                    <mat-autocomplete #autofournisseur="matAutocomplete" [displayWith]="getOptionTextFournisseur">
+                      <mat-option *ngFor="let f of filteredFournisseurs  | async" [value]="f">
+                        {{f.nom}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field  appearance="outline" readonly>
+                      <mat-label>code Fournisseur</mat-label>
+                      <input matInput formControlName ="codeF"  readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Date de Payment</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName ="datePayment"  >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    <div class="card text-center my-4">
+        <div class="card-header" >
+            Règlement
+        </div>
+        <div class="card-body mx-5">
+          <form  [formGroup] ="formInfosReglement" >
+            <div class="row">
+                <div class="col me-3">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mode de règlement</mat-label>
+                        <mat-select formControlName="mode_reglement" >
+                          <mat-option         >- Mode -</mat-option>
+                          <mat-option value="espèce">Espèce</mat-option>
+                          <mat-option value="chèque">Chèque</mat-option>
+                          <mat-option value="carte bancaire">Carte banquaire</mat-option>
+                          <mat-option value="virement bancaire">Virement banquaire</mat-option>
+                          <mat-option value="prélèvement">Prélèvement</mat-option>
+                          <mat-option value="effet">Effet</mat-option>
+                          <mat-option value="aute">Aute</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Avance</mat-label>
+                        <input formControlName="avanceGeneral" matInput  type="number"   (keyup)="calculeResteGeneral()" />
+                      </mat-form-field>
+                    
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline" readonly>
+                        <mat-label>Reste</mat-label>
+                        <input formControlName="reste" matInput  type="number" readonly/>
+                      </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline" readonly>
+                        <mat-label>Status</mat-label>
+                        <input formControlName="statusGeneral" matInput  type="text" readonly/>
+                      </mat-form-field>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    <div class="card  mt-4">
+        <div class="card-body ">
+  
+          <div class="example-container mat-elevation-z8 ">
+            <table mat-table [dataSource]="dataSource" matSort> 
+              <!-- reference Column -->
+              <ng-container matColumnDef="BonNum" >
+                <th mat-header-cell *matHeaderCellDef class="ms-2" mat-sort-header> Bon Num </th>
+                <td mat-cell *matCellDef="let row">{{row.bonANum}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+
+              </ng-container>
+            
+              <!-- designation Column -->
+              <ng-container matColumnDef="Date" >
+                <th mat-header-cell *matHeaderCellDef> Date</th>
+                <td mat-cell *matCellDef="let row"> {{row.dateBa}}</td>
+                <td mat-footer-cell *matFooterCellDef>Total</td>
+
+              </ng-container>
+   
+              <!-- montant_HT Column -->
+              <ng-container matColumnDef="MontantTotal">
+                <th mat-header-cell *matHeaderCellDef> Montant Total </th>
+                <td mat-cell *matCellDef="let row">  {{row.montantTotal}} </td>
+                <td mat-footer-cell *matFooterCellDef>{{totaleMontants}}</td>
+
+              </ng-container>
+      
+              <!-- taux_TVA Column -->
+              <ng-container matColumnDef="MontantPayer">
+                <th mat-header-cell *matHeaderCellDef> Montant Payer </th>
+                <td mat-cell *matCellDef="let row"> {{row.montantPayer}}  </td>
+                <td mat-footer-cell *matFooterCellDef>{{totaleMontantPayer}}</td>
+              </ng-container>
+      
+              <ng-container matColumnDef="RestePayer">
+                <th mat-header-cell *matHeaderCellDef> Reste à payer </th>
+                <td mat-cell *matCellDef="let row">  {{row.montantTotal -row.montantPayer }} </td>
+              <td mat-footer-cell *matFooterCellDef>{{totaleRestePayer}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Avance">
+                <th mat-header-cell *matHeaderCellDef> Avance </th>
+                <td mat-cell *matCellDef="let row ; let i = index" >
+                   <input  type="number" class="form-control input" [(ngModel)]="avances[i]"  (keyup)="calculeReste(row.montantTotal - row.montantPayer ,avance.value,i)" value="{{avances[i]  }}"  #avance> 
+                </td>
+                <td mat-footer-cell *matFooterCellDef> {{totaleAvances}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Reste">
+                <th mat-header-cell *matHeaderCellDef> Reste </th>
+                <td mat-cell *matCellDef="let row ; let i = index" > {{ restes[i] }}  </td>
+                <td mat-footer-cell *matFooterCellDef>{{totaleRestes}}</td>
+
+              </ng-container>
+
+              <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let row ; let i = index" >
+                  <span *ngIf="status[i]" class="span-satus-true" >R</span>
+                  <span *ngIf="!status[i]" class="span-satus-false" >NR</span>
+                </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+      
+            
+             
+              
+            </table>
+          </div>
+      
+          <div class="text-center mt-3">
+            <button class="btn btn-success ms-3" [disabled]="formInfosFournisseur.invalid || formInfosReglement.invalid" (click)="onSubmit()" ><i class="fa fa-check" aria-hidden="true" ></i> Effectuer le règlement </button>
+          </div>
+  
+        </div>
+      </div>
+</div>

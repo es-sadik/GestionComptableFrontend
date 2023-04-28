@@ -1,0 +1,199 @@
+
+<div class="container p-2 bg-white" >
+    <form [formGroup]="productForm" class="mt-5">
+      <div class="row">
+        <div class="col-4 " >
+          <div class="d-flex align-items-center flex-column ">
+            <img [src]="imageUrl" >   
+            <label class="btn btn-dark upload "><i class="fa fa-plus" aria-hidden="true"></i>
+               <input type="file" #Image accept="image/*" (change)="onSelectFile($event)" >
+            </label>    
+        
+            <div class="mt-3">
+              <mat-form-field *ngIf="isAddMode" appearance="outline">
+                <mat-label>Reference</mat-label>
+                <input formControlName="reference" matInput placeholder="reference de produit" type="text" />
+              </mat-form-field>
+
+              <mat-form-field *ngIf="!isAddMode" appearance="outline" readonly>
+                <mat-label>Reference</mat-label>
+                <input formControlName="reference" matInput placeholder="reference de produit" type="text" readonly/>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline" >
+                <mat-label>Désignation</mat-label>
+                <input formControlName="designation" matInput placeholder="désignation deproduit" type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+    
+        
+        </div>
+        <div class="col-8">
+          <div class="card text-center" style="height:93%;">
+            <div class="card-header">
+              Prix
+            </div>
+            <div class="card-body card-prix">
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Prix d'achat HT</mat-label>
+                    <input formControlName="prixAchat" matInput placeholder="Prix d'achat HT" type="number" [(ngModel)]="produit.prixAchat" />
+                  </mat-form-field>
+                  
+                  <mat-form-field appearance="outline">
+                    <mat-label>Prix de vente HT</mat-label>
+                    <input formControlName="prixVente" matInput placeholder="Prix de vente HT" type="number" [(ngModel)]="produit.prixVente" (keyup)="calculprixRevient()" />
+                  </mat-form-field>
+                </div>
+                <div class="col-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Prix de revient HT</mat-label>
+                    <input formControlName="prixRevient" matInput placeholder="Prix de revient HT" type="number" [(ngModel)]="produit.prixRevient" (keyup)="calculprixVente()" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>TVA (%)</mat-label>
+                    <mat-select formControlName="tva" placeholder="TVA de produit">
+                      <mat-option value="20" >20</mat-option>
+                      <mat-option value="14">14</mat-option>
+                      <mat-option value="10">10</mat-option>
+                      <mat-option value="7" >7</mat-option>
+                      <mat-option value="0" >0</mat-option>                  
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+        <div class="card text-center ">
+          <div class="card-header" >
+            Les information :
+          </div>
+          <div class="card-body" >
+            <div class="row">
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Marque</mat-label>
+                  <input  formControlName="marque" matInput placeholder="marque de produit" type="text" />
+                </mat-form-field>
+              </div>
+              <div class="col-4">
+             
+                <mat-form-field appearance="outline" >
+                  <mat-label> Categorie </mat-label>
+                  <mat-select formControlName="categorie" [compareWith]="compareCategoryObjects">
+                    <mat-option *ngFor="let categorie of categories" [value]="categorie" >{{categorie.nomCat}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                
+                <div class="add-categorie" >
+                  <button mat-fab color="warn" class="btnAdd" (click)="openDialogAddCategorie()"  > 
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+
+              </div>
+              <div class="col-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Type de produit</mat-label>
+                  <mat-select formControlName="type" >
+                    <mat-option value="stockable" >stockable</mat-option>
+                    <mat-option value="non stokable">non stokable</mat-option>
+                    <mat-option value="consomable">consomable</mat-option>
+                    <mat-option value="sevices">sevices</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2"> </div>
+              <div class="col-8">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput placeholder="description" formControlName="description"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-2"></div> 
+            </div>
+          </div>
+          
+        </div>
+        <div class="row mt-5">
+          <div class="col-6">
+            <div class="card text-center">
+              <div class="card-header">
+                Caractéristiques quantitatives
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Poids</mat-label>
+                      <input formControlName="poids" matInput placeholder="poids" type="number" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Volume</mat-label>
+                      <input formControlName="volume" matInput placeholder="volume" type="number" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Surface (en Métre carré)</mat-label>
+                      <input formControlName="surface" matInput placeholder="surface" type="number" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card text-center">
+              <div class="card-header">
+                Les dimensions
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Longueur (en Métre)</mat-label>
+                      <input formControlName="longueur" matInput placeholder="longueur" type="number" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Largeur (en Métre)</mat-label>
+                      <input formControlName="largeur" matInput placeholder="largeur" type="text" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Hauteur (en Métre)</mat-label>
+                      <input formControlName="hauteur" matInput placeholder="hauteur" type="text" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>  
+      
+      <!--                 -->
+    
+      <div  class="mt-5 mb-3 text-center" >
+        <button class="btn btn-outline-secondary me-2" routerLink="/produit" ><i class="fa fa-arrow-left " aria-hidden="true"></i> Retour</button>
+        <button *ngIf="isAddMode" (click)="onSubmit()" class="btn btn-success" [disabled]="productForm.invalid"> <i class="fa fa-check" aria-hidden="true"></i> Ajouter</button>
+        <button *ngIf="!isAddMode" (click)="onSubmit()" class="btn btn-warning" [disabled]="productForm.invalid"> <i class="fa fa-pencil" aria-hidden="true"></i> Modifier </button>
+      </div>
+    </form>
+       <notifier-container></notifier-container>
+    </div>

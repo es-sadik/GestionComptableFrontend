@@ -1,0 +1,89 @@
+<div class="card mt-3 p-3">
+  <div class="card-body card-prix">
+    <div class="demo-button-container" fxLayoutAlign="flex-end">
+      <button type="button" class="btn btn-success" routerLink="addFacture">
+        <i class="fa fa-plus-circle fa-lg me-1" aria-hidden="true"></i>
+        Ajoute Facture</button>
+    </div>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filtrer Bon</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechereche" #input>
+    </mat-form-field>
+   
+    <div class="demo-button-container mt-2"  fxLayoutAlign="flex-end">
+      <button (click)="openPDF()" type="button" class="btn btn-primary"  >
+        <i class="fa fa-print mx-1" aria-hidden="true"></i>
+        Imprimer</button>
+    </div>
+    <div>
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="Ref">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rèf</th>
+          <td mat-cell *matCellDef="let row">{{row.facNum}}</td>
+        </ng-container>
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="Commande">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Commande </th>
+          <td mat-cell *matCellDef="let row"> {{row.bonHonoraire.bonHNum}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <td mat-cell *matCellDef="let row"> {{row.dateFac}} </td>
+        </ng-container>
+
+        <!-- Tele Column -->
+        <ng-container matColumnDef="Client">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
+          <td mat-cell *matCellDef="let row"> {{row.bonHonoraire.client.nom}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TotalHt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total HT </th>
+          <td mat-cell *matCellDef="let row"> {{row.totalHt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TotalTva">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total TVA</th>
+          <td mat-cell *matCellDef="let row"> {{row.totalTva}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TotalTtc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total TTC </th>
+          <td mat-cell *matCellDef="let row"> {{row.totalTtc}} </td>
+        </ng-container>
+
+        <!-- Action column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="actions">
+              <button class="btn btn-outline-warning mx-1" routerLink="showFacture/{{row.idFac}}"><i aria-hidden="true"
+                  class="fa fa-files-o "></i></button>
+              <button (click)="openDialogDelete(row)" class="btn btn-outline-danger"><i class="fa fa-trash"
+                  aria-hidden="true"></i></button>
+
+            </div>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+
+<mat-horizontal-stepper [linear]="false" #stepper  >
+  
+    <!--les information general form-->
+    <mat-step [stepControl]="infosGeneralFormGroup" >
+      <form [formGroup]="infosGeneralFormGroup" >
+        <ng-template matStepLabel>Les Informations generale</ng-template>
+        <div class="container  m-2 mt-4">
+          
+
+          <div class="row ">
+            
+            <div class="col-6">
+
+              <div class="d-flex align-items-center flex-column">
+
+                
+                <h3 [hidden]="isAddMode">Code Fornisseur  : {{fournisseur.codeF}}</h3>
+                
+                <img [src]="imageUrl" class="img-fluid">
+                <label class="btn btn-success mt-4 "><i class="fa fa-upload me-2" aria-hidden="true"></i>Choisie une image
+                  <input type="file" #Image accept="image/*" (change)="onSelectFile($event)" >
+                </label>
+                
+                
+              </div>
+
+              
+
+              
+            </div>
+          
+            <div class="col-6 pt-4 px-4 ">
+              
+              <mat-form-field  appearance="outline">
+                <mat-label>Nom / Raison Sociale</mat-label>
+                <input matInput placeholder="Nom" formControlName="nom" required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Site Web</mat-label>
+                <input matInput  placeholder="website" formControlName="siteWeb" >
+              </mat-form-field>
+
+
+              <mat-form-field  appearance="outline">
+                <mat-label>CNSS</mat-label>
+                <input type="number" matInput placeholder="Numéro d'affiliation à la CNSS" formControlName="cnss" >
+              </mat-form-field>
+            </div>
+          
+                
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-6 px-4">
+              
+                <mat-form-field  appearance="outline">
+                  <mat-label>IF</mat-label>
+                  <input type="number" matInput placeholder="Identifiant Fiscal " formControlName="ifi" >
+                </mat-form-field>
+  
+                <mat-form-field  appearance="outline">
+                  <mat-label>TP</mat-label>
+                  <input type="number" matInput placeholder="Taxe Professionnelle" formControlName="tp" >
+                </mat-form-field>
+
+              
+            </div>
+            <div class="col-6 px-4">
+            
+              <mat-form-field  appearance="outline">
+                <mat-label>ICE</mat-label>
+                <input type="number" matInput placeholder="Identifiant Commun de l’Entreprise" formControlName="ice" >
+              </mat-form-field>
+
+              <mat-form-field  appearance="outline">
+                <mat-label>RC</mat-label>
+                <input type="number" matInput placeholder="Registre du commerce" formControlName="rc" >
+              </mat-form-field>
+              
+            </div>
+          </div>
+
+          <div  class="mt-4" fxLayoutAlign="center end" >
+            <button matStepperNext  class="btn btn-outline-primary" >Suivant<i class="fa fa-arrow-right ms-2" aria-hidden="true"></i></button>
+          </div>
+          
+        </div>
+
+      </form>
+    </mat-step>
+
+    <!--adresse form-->
+    <mat-step [stepControl]="adresseFormGroup"  >
+      
+      <form [formGroup]="adresseFormGroup"   >
+        <ng-template matStepLabel >Adresse</ng-template>
+        <div class="container "  id="adresseForm" >
+
+          <div class="row ">
+            <mat-form-field appearance="outline" class="mx-auto">
+              <mat-label>Ville</mat-label>
+              <mat-select formControlName="ville">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let ville of villes" [value]="ville">{{ville}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div class="row ">
+            <mat-form-field appearance="outline" class="mx-auto">
+              <mat-label>Adresse</mat-label>
+              <input matInput  placeholder="adresse" formControlName="adresse" >
+            </mat-form-field>
+          </div>
+
+          <div class="row " >
+            <mat-form-field appearance="outline" class="mx-auto">
+              <mat-label>Code Postale</mat-label>
+              <input matInput type="text" placeholder="Code Postale" formControlName="codePostale" >
+            </mat-form-field>
+          </div> 
+
+          <div class="mt-5" fxLayoutAlign="center end" >
+            <button  matStepperPrevious class="btn btn-outline-danger me-3"><i class="fa fa-arrow-left me-2 mx-auto" aria-hidden="true"></i>Précédent</button>
+            <button  matStepperNext class="btn btn-outline-primary ">Suivant<i class="fa fa-arrow-right ms-2 " aria-hidden="true"></i></button>
+          </div>
+          
+          
+        </div>
+
+      </form>
+      
+    </mat-step>
+  
+
+    <!--contacts form-->
+    <mat-step [stepControl]="contactsFormGroup" >
+      <form [formGroup]="contactsFormGroup"  >
+        <ng-template matStepLabel>Contacts</ng-template>
+        <div class="container " id="contactsForm">
+
+          <div class="row mb-3">
+            <mat-form-field appearance="outline" class="mx-auto">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" placeholder="Ex. pat@example.com"  formControlName="email" >
+              <mat-error *ngIf="contactsFormGroup.controls['email'].hasError('email') && !contactsFormGroup.controls['email'].hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="contactsFormGroup.controls['email'].hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="row ">
+            <mat-form-field appearance="outline" class="mx-auto">
+              <mat-label >Telephone Portable</mat-label>
+              <input  matInput type="tel" class="inputTele" placeholder="066-666-1234"  formControlName="telePortable" >
+            </mat-form-field>
+          </div>
+
+          <div class="row " >
+            <mat-form-field appearance="outline" class="mx-auto">
+              <mat-label >Telephone Fix</mat-label>
+              <input  matInput type="tel" placeholder="055-555-1234"  formControlName="teleFix" >
+            </mat-form-field>
+          </div> 
+
+          <div class="mt-5" fxLayoutAlign="center end" >
+            <button  matStepperPrevious class="btn btn-outline-danger me-3"><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>Précédent</button>
+            <button *ngIf="isAddMode" (click)="onSubmit()" class="btn btn-success " [disabled]="infosGeneralFormGroup.invalid" ><i class="fa fa-check me-1" aria-hidden="true"></i> Ajouter </button>
+            <button *ngIf="!isAddMode" (click)="onSubmit()" class="btn btn-warning " [disabled]="infosGeneralFormGroup.invalid" ><i class="fa fa-pencil me-1" aria-hidden="true"></i> Modifier</button>
+          </div>
+          
+        </div>
+
+      </form>
+      <div>
+         <notifier-container></notifier-container>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+
+
+  

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GestionComptableFrontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+
+  <script>
+    if(localStorage.getItem('stay') && localStorage.getItem('stay') == '0'){
+      var test  ;
+      document.addEventListener('visibilitychange', function() {
+
+        
+      
+        if(document.hidden){
+          
+
+          test = setTimeout(() => {
+
+            localStorage.clear();
+            window.location.replace('http://localhost:4200/user/login');
+            
+          }, 5*3600*1000 );
+          
+        }
+        else{
+
+          clearTimeout(test);
+
+        }
+    
+      });
+
+
+
+        function clearLocalStorage(){
+        localStorage.clear();
+        }
+
+        
+        /*window.onbeforeunload = () => {
+          
+        }*/
+
+
+
+
+    }
+    
+  </script>
+  
+</body>
+</html>

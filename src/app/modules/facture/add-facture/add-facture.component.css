@@ -1,0 +1,46 @@
+mat-form-field{
+    width: 100%;
+}
+
+button.example-custom-date-class {
+    background: orange;
+    border-radius: 100%;
+}
+
+.example-container {
+    max-height: 400px;
+    overflow: auto;
+}
+  
+table {
+  width: 100%;
+}
+
+td, th {
+  width: 12.5%;
+  
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+  
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
+}
+
+  mat-expansion-panel-header{
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 1px 1px solid rgba(0, 0, 0, 0.125);
+  }
+  
+  
+
+  .mat-expansion-panel-header.mat-expanded,
+  .mat-expansion-panel-header.mat-expanded:hover,
+  .mat-expansion-panel-header.mat-expanded:focus {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 1px 1px solid rgba(0, 0, 0, 0.125);
+  }

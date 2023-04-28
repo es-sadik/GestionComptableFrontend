@@ -1,0 +1,57 @@
+
+.is-active {
+  background-color: #272343;
+  color: white ;
+}
+.is-active i{
+  color: white ;
+}
+.is-active mat-icon{
+  color: white ;
+}
+
+
+mat-list a:hover {
+  background-color: #272343;
+  color: white ;
+}
+
+mat-list a:focus{
+  background-color: #272343; 
+  color: white;
+}
+
+mat-list a:hover i{
+  color: white ;
+}
+mat-list a:hover mat-icon{
+  color: white ;
+}
+mat-list a:focus i{
+  color: white ;
+}
+mat-list a:focus mat-icon{
+  color: white ;
+}
+
+
+.c-primary{
+  color: #272343;
+} 
+
+
+.c-blue {
+    color: #4099ff;
+}
+
+.c-green {
+    color: #2ed8b6;
+}
+
+.c-yellow {
+    color: #FFB64D;
+}
+
+.c-pink {
+    color: #FF5370;
+}

@@ -1,0 +1,100 @@
+<div>
+    <button (click)="openPDF()" type="button" class="btn btn-primary ">
+        <i class="fa fa-print mx-1" aria-hidden="true"></i>
+        Imprimer</button>
+</div>
+
+<div id="content1" class="tablewidth my-4 ">
+    <div class="align-center">
+        <div class="card border border-white" >
+            <div class="card-body">
+                <div id="contenu1" class="text-black">
+                    <div class="row">
+                        <div class="col-6">
+                            <div id="divLogo1_1" style="text-align: center;margin-top: 35px;">
+                                <img src="assets/imgs/LOGO-SITE-COLOR.png" alt="logo"
+                                    style="width:180px;height:80px" class="img-fluid">
+                            </div>
+                            <div id="divLogo1_2" style="display : none">
+                                <img id="imgLogo1" src="" alt="logo" style="width:80px;height:80px" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-6" style="line-height:35px ;">
+                            Code client: {{facture.bonHonoraire.client.codeC}} <br>
+                            Nom Client : {{facture.bonHonoraire.client.nom}} <br>
+                            Télèphone : {{facture.bonHonoraire.client.teleFix}} <br>
+                            Adresse : {{facture.bonHonoraire.client.adresse}} <br>
+                            Date facture : {{facture.dateFac}} <br>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr ></tr>
+                            <tr>
+                                <th colspan="7"
+                                    style="text-align:center; background-color:rgb(235, 233, 233); height: 35px;">
+                                    Facture N° : {{facture.facNum}}
+                                </th>
+                            </tr>
+                            <tr ></tr>
+
+                            <tr >
+                                
+                                <th colspan="7" style="text-align: end;">
+                                   <p>Montants exprimés en Dirham</p> 
+                                </th>
+                            </tr>
+                            <tr class="headerFacture1">
+                                <th class="text-center">Réf.</th>
+                                <th  class="text-center">Désignation</th>
+                                <th class="text-center">Qté</th>
+                                <th  class="text-center">PU. HT</th>
+                                <th class="text-center">TVA</th>
+                                <th  class="text-center">MT. HT</th>
+                                <th  class="text-center">MT. TTC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  class="bodyFacture1" *ngFor="let lign of listLignBH" >
+                                <td  class="text-left" > {{lign.produit.reference}}  </td>
+                                <td class="text-left" > {{lign.produit.designation}} </td>
+                                <td  class="text-center"> {{lign.quantite}}  </td>
+                                <td   style="text-align:right ;">{{lign.prixUnitaire  | number :'1.2-2'}}</td>
+                                <td  class="text-center">{{lign.produit.tva}}</td>
+                                <td   style="text-align:right ;">{{lign.quantite * lign.prixUnitaire  | number :'1.2-2'}}</td>
+                                <td  style="text-align:right ;" >{{lign.montantTtc | number :'1.2-2'}}</td>
+                            </tr>
+
+                            <tr class="tbody_ligne1" id="tbody_ligne1"  >
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="htFacture1">
+                                <td colspan="4" style="border-bottom: none !important"></td>
+                                <th colspan="2" class="text-left">Total HT </th>
+                                <th colspan="1" style="text-align:right ;"> {{totaleMontantHt | number :'1.2-2'}}</th>
+                            </tr>
+                            <tr class="tvaFacture1">
+                                <td colspan="4" style="border-bottom: 0px solid red"></td>
+                                <th colspan="2" class="text-left">Total TVA </th>
+                                <th colspan="1" style="text-align:right ;"> {{totaleTauxTva | number :'1.2-2'}} </th>
+                            </tr>
+                            <tr class="ttcFacture1">
+                                <td colspan="4" style="border-bottom: none !important"></td>
+                                <th colspan="2" class="text-left">Total TTC </th>
+                                <th colspan="1" style="text-align:right ;"> {{totaleMontantTtc | number :'1.2-2'}} </th>
+                            </tr>
+                           
+                        </tbody>
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

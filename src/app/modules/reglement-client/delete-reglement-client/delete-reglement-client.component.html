@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Supprimer règlement</h1>
+<div mat-dialog-content>
+    Êtes-vous sûr de vouloir supprimer ce règlement : {{reglementClient.codeRC}} ?
+</div>
+<div mat-dialog-actions >
+    <div class="ms-auto">
+  <button class="btn btn-primary " mat-dialog-close>Fermer</button>
+  <button class="btn btn-danger  mx-2" (click)="deleteReglementClientById()" >Supprimer</button>
+    </div>
+</div>

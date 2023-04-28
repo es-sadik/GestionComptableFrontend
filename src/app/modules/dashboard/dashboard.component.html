@@ -1,0 +1,136 @@
+<div class="containe">
+    <div class="row">
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Clients</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.client}}</span></h2>
+                    <mat-icon class=" f-left">people_outline</mat-icon>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Fournisseurs</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.fournisseur}}</span></h2>
+                    <mat-icon class=" f-left">people_outline</mat-icon>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Catégories</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.categorie}}</span></h2>
+                    <i class="bx bx-category  f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="row">
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Produits</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.produit}}</span></h2>
+                    <i class="fa fa-cubes f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Bons d'achat</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.bonAchat}}</span></h2>
+                    <i class="bx bx-cart-download  f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Bons d'honoraire</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.bonHonoraire}}</span></h2>
+                    <i class="bx bx-cart  f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="row">
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Factures</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.facture}}</span></h2>
+                    <i class="fa fa-files-o f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-xl-4">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Règ. Fournisseurs</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.reglementFournisseur}}</span></h2>
+                    <i class="bx bx-money  f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-5 col-xl-4">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <h2 class="m-b-20">Règ. Clients</h2>
+                    <h2 class="f-right"><span>{{this.dataCounted.reglementClient}}</span></h2>
+                    <i class="bx bx-money  f-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+	</div>
+    
+    <div class="row mt-5">
+        <div class="col-md-12 col-xl-6">
+            <div class="card bar-chart-card">
+
+                <app-grouped-vertical-bar-chart></app-grouped-vertical-bar-chart>
+                
+            </div>
+        </div>
+
+        <div class="col-md-12  col-xl-6">
+            <div class="card line-chart-card">
+
+                <app-line-chart></app-line-chart>
+
+            </div>
+        </div>
+    
+    </div>
+
+
+    <div class="row mt-2">
+        <div class="col-md-12 col-xl-6">
+            <div class="card pie-chart-card">
+
+                <app-pie-chart></app-pie-chart>
+                
+            </div>
+        </div>
+
+        <div class="col-md-12  col-xl-6">
+            <div class="card doughnut-chart-card">
+
+                <app-doughnut-chart></app-doughnut-chart>
+
+            </div>
+        </div>
+    
+    </div>
+
+</div>
+
